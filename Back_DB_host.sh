@@ -18,7 +18,7 @@ spawn ssh ${USER}@${HOST}
 expect -re "password:"
 send "${PASS}\r"
 expect ">"
-send "mysqldump --password=${passDB} --user=${userDB} -h ${hostDB} ${database} > Backup[exec date "+%d-%m-%Y_%H:%M"].sql\r"
+send "mysqldump --password=${passDB} --user=${userDB} -h ${hostDB} ${database} > Backups/Backup_${database}_[exec date "+%d-%m-%Y_%H:%M"].sql\r"
 send "exit\r"
 expect "=>"
 exit
