@@ -18,13 +18,17 @@ set database Nombre_DB
 set userFTP Nuestro_usuario
 set passFTP Nuestra_pass
 set hostFTP Dirección_host_FTP
+
+# Directorios
+set direcREMOTO Backups
+set direcLOCAL Backups
  
 # Conectamos al host mediante ssh
 spawn ssh ${USER}@${HOST}
 expect -re "password:"
 send "${PASS}\r"
 expect "sql>"
-send "mysqldump --password=${passDB} --user=${userDB} -h ${hostDB} ${database} > Backups/Backup_${database}_[exec date "+%d-%m-%Y"].sql\r"
+send "mysqldump --password=${passDB} --user=${userDB} -h ${hostDB} ${database} > ${direcREMOTO}/Backup_${database}_[exec date "+%d-%m-%Y"].sql\r"
 send "exit\r"
 expect "sql>"
 
@@ -35,9 +39,9 @@ send "${userFTP}\r"
 expect "Password:"
 send "${passFTP}\r"
 expect "ftp> "
-send "cd /Backups\r"
+send "cd /${direcREMOTO}\r"
 expect "ftp>"
-send "lcd ~/Backups\r"
+send "lcd ~/${direcLOCAL}\r"
 expect "ftp>"
 send "get Backup_${database}_[exec date "+%d-%m-%Y"].sql\r"
 expect "ftp>"
