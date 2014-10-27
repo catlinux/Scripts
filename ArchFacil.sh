@@ -5,7 +5,7 @@ printf "\e[8;30;100;t" && clear
 ## Variables
 CABEZERA1="####################################################################"
 CABEZERA2="##                                                                ##"
-CABEZERA3="## Script para instalar aplicaciones automáticamente en Archlinux ##"
+CABEZERA3="## Script para instalar y configurar varios aspectos de Archlinux ##"
 MENU_ALMO="##############################"
 MENU_PRPL="##      Menú principal      ##"
 MENU_APL="##    Menú Aplicaciones     ##"
