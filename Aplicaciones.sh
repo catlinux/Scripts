@@ -25,13 +25,16 @@ LIBRE="Libre Office"
 EOG="Eye of Gnome"
 NTFS="ntfs-3g"
 
+echo ""
+echo ""
+echo ""
 printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 printf "${AZUL} %*s\n" $(((${#CABEZERA2}+100)/2)) "$CABEZERA2"
 printf "${AZUL} %*s\n" $(((${#CABEZERA3}+102)/2)) "$CABEZERA3"
 printf "${AZUL} %*s\n" $(((${#CABEZERA2}+100)/2)) "$CABEZERA2"
 printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 echo -e "${NC}"
-sleep 2 && clear
+sleep 5 && clear
 
 function accesorios
 {
@@ -46,6 +49,7 @@ function accesorios
 		echo 2- VirtualBox - Instalar máquinas virtuales
 		echo 3- gedit - Editor de texto
 		echo 4- unetbootin - Graba iso\'s en tu pendrive
+		echo 5- Gnome-screenshot - Capturas de pantalla con la tecla \"imp pant\"
 		echo ""
 		echo 0- Salir al menú principal
 		echo
@@ -127,6 +131,25 @@ function accesorios
 				clear
 				printf "${ROJO} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 				printf "${ROJO} %*s\n" $(((unetbootin+100)/2)) "unetbootin"
+				printf "${ROJO} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
+				echo ""
+				echo "NO SE HA INSTALADO !!!"
+				echo -e "${NC}"
+			fi
+			sleep 4 && clear
+		elif [ "$accesorios" = "5" ]; then
+			sudo pacman -Sy --noconfirm gnome-screenshot && clear
+			if [ -x /usr/bin/gnome-screenshot ];then
+				printf "${VERDE} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
+				printf "${VERDE} %*s\n" $(((Gnome-screenshot+100)/2)) "Gnome-screenshot"
+				printf "${VERDE} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
+				echo ""
+				echo "SE HA INSTALADO CORRECTAMENTE"
+				echo -e "${NC}"
+			else
+				clear
+				printf "${ROJO} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
+				printf "${ROJO} %*s\n" $(((Gnome-screenshot+100)/2)) "Gnome-screenshot"
 				printf "${ROJO} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 				echo ""
 				echo "NO SE HA INSTALADO !!!"
