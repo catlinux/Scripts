@@ -1012,6 +1012,7 @@ function varios
 			sleep 4 && clear
 		elif [ "$varios" = "5" ]; then
 			if [ -x /usr/bin/java ];then
+				sudo pacman -Sy --noconfirm jre7-openjdk && clear
 				printf "${VERDE} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 				printf "${VERDE} %*s\n" $(((JRE7+100)/2)) "JRE7"
 				printf "${VERDE} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
