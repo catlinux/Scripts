@@ -36,7 +36,7 @@ echo ""
 echo ""
 printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 printf "${AZUL} %*s\n" $(((${#CABEZERA2}+100)/2)) "$CABEZERA2"
-printf "${AZUL} %*s\n" $(((${#CABEZERA3}+102)/2)) "$CABEZERA3"
+printf "${AZUL} %*s\n" $(((${#CABEZERA3}+100)/2)) "$CABEZERA3"
 printf "${AZUL} %*s\n" $(((${#CABEZERA2}+100)/2)) "$CABEZERA2"
 printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 echo -e "${NC}"
@@ -225,12 +225,23 @@ function mantenimiento
 		read -p "Selecciona una opción: " mantenimiento 
 		clear
 		if [ "$mantenimiento" = "1" ]; then
-				printf "${ROJO} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
-				printf "${ROJO} %*s\n" $(((${#ACTUALIZA}+100)/2)) "$ACTUALIZA"
-				printf "${ROJO} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
+			if [ -x /usr/bin/yaourt ]; then
+				yaourt -Syua --noconfirm && clear
+				printf "${VERDE} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
+				printf "${VERDE} %*s\n" $(((${#ACTUALIZA}+100)/2)) "$ACTUALIZA"
+				printf "${VERDE} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 				echo ""
-				echo "OPCIÓN NO DISPONIBLE (PRÓXIMAMENTE)"
+				echo "Se ha actualizado el sistema mediante Yaourt"
 				echo -e "${NC}"
+			else
+				sudo pacman -Syu --noconfirm && clear
+				printf "${VERDE} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
+				printf "${VERDE} %*s\n" $(((${#ACTUALIZA}+100)/2)) "$ACTUALIZA"
+				printf "${VERDE} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
+				echo ""
+				echo "Se ha actualizado el sistema mediante Pacman"
+				echo -e "${NC}"
+			fi
 			sleep 4 && clear
 		elif [ "$mantenimiento" = "0" ];then
 			break
@@ -249,10 +260,10 @@ function accesorios
 		printf "${AZUL} %*s\n" $(((${#MENU_ACCS}+102)/2)) "$MENU_ACCS"
 		printf "${AZUL} %*s\n" $(((${#MENU_ALMO}+100)/2)) "$MENU_ALMO"
 		echo -e "${NC}"
-		echo 1- gnome-system-momitor\(EOG\) - visor de imágenes
+		echo 1- Gnome-system-momitor\(EOG\) - visor de imágenes
 		echo 2- VirtualBox - Instalar máquinas virtuales
-		echo 3- gedit - Editor de texto
-		echo 4- unetbootin - Graba iso\'s en tu pendrive
+		echo 3- Gedit - Editor de texto
+		echo 4- Unetbootin - Graba iso\'s en tu pendrive
 		echo 5- Gnome-screenshot - Capturas de pantalla con la tecla \"imp pant\"
 		echo ""
 		echo 0- Salir al menú principal
@@ -916,8 +927,8 @@ function varios
 		echo 2- Wine - Para poder ejecutar programas en windows
 		echo 3- Playonlinux - Para poder ejecutar basados en windows
 		echo 4- Gparted - Gestor de particiones y discos
-		echo 5- jre7-openjdk - para correr programas en java
-		echo 6- ntf3-3g - Para poder acceder a particiones ntfs con permisos de lectura y escritura
+		echo 5- Jre7-openjdk - para correr programas en java
+		echo 6- Ntf3-3g - Para poder acceder a particiones ntfs con permisos de lectura y escritura
 		echo ""
 		echo 0- Salir al menú principal
 		echo
@@ -1000,7 +1011,6 @@ function varios
 			fi
 			sleep 4 && clear
 		elif [ "$varios" = "5" ]; then
-				sudo pacman -Sy --noconfirm jre7-openjdk && clear
 			if [ -x /usr/bin/java ];then
 				printf "${VERDE} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 				printf "${VERDE} %*s\n" $(((JRE7+100)/2)) "JRE7"
