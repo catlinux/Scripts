@@ -370,14 +370,15 @@ function configura
 		if [ "$configura" = "1" ]; then
 			if [ ! -z $(grep "archlinuxfr" "/etc/pacman.conf") ]; then
    				sudo pacman -Sy --noconfirm yaourt && clear
+				echo "Repositorios AUR habilitados y yaourt instalado" && sleep 3 && clear
 			else (
 				echo ""
 				echo "[archlinuxfr]"
 				echo "SigLevel = Never"
 				echo "Server = http://repo.archlinux.fr/\$arch") | sudo tee -a /etc/pacman.conf >/dev/null
 				sudo pacman -Sy --noconfirm yaourt && clear
+				echo "Repositorios AUR habilitados y yaourt instalado" && sleep 3 && clear
 			fi
-			sleep 4 && clear
 		elif [ "$configura" = "2" ]; then
 			if [ "`uname -m`" = "x86_64" ]; then
 				if [ ! -z $(grep "#\[multilib\]" "/etc/pacman.conf") ] && [ -z $(grep "^\[multilib\]" "/etc/pacman.conf") ]; then
@@ -387,13 +388,16 @@ function configura
 					echo ""
 					echo "[multilib]"
 					echo "Include = /etc/pacman.d/mirrorlist") | sudo tee -a /etc/pacman.conf >/dev/null
+					clear 
+					echo "Repositorios multilib habilitados" && sleep 3 && clear
 				else 
-					echo "Ya tenías habilitados los repositorios multilib"
+					clear 
+					echo "Ya tenías habilitados los repositorios multilib" && sleep 3 && clear
 				fi
 			else
-				echo "Este sistema no es 64bits, no necesitas multilib" && sleep 3
+				clear 
+				echo "Este sistema no es 64bits, no necesitas multilib" && sleep 3 && clear
 			fi
-			sleep 4 && clear
 		elif [ "$configura" = "3" ]; then
 			config
 		elif [ "$configura" = "0" ];then
