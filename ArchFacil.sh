@@ -42,6 +42,314 @@ printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 echo -e "${NC}"
 sleep 5 && clear
 
+function config
+{
+	config=""
+	while [ "$config" != "0" ]
+	do
+		echo 1- "Cambia el nombre de tu equipo (hostname)"
+		echo 2- "Zona horaria"
+		echo 3- "Idioma del sistema (locale.conf y locale.gen)"
+		echo ""
+		echo 0- Menú anterior
+		echo
+		read -p "Selecciona una opción: " config
+		clear
+		if [ "$config" = "1" ]; then
+			clear
+			echo "Escribe el nombre que le quieres poner a tu equipo"
+			echo ""
+			read -p "Nombe del equipo: " hostname
+			hostn=$(cat /etc/hostname)
+			sudo sed -i "s/$hostn/$hostname/g" /etc/hostname
+			echo Nombre del equipo cambiado a $hostname
+			sleep 3 && clear
+		elif [ "$config" = "2" ]; then
+			localtime
+		elif [ "$config" = "3" ]; then
+			locale
+				elif [ "$config" = "0" ]; then
+			break
+		else
+			echo "Escoge tu zona correcta"
+		fi
+	done
+}
+
+function localtime
+{
+	localtime=""
+	while [ "$localtime" != "0" ]
+	do
+		echo 1- Europa
+		echo 2- América - Argentina
+		echo 3- América
+		echo ""
+		echo 0- Menú anterior
+		echo
+		read -p "Selecciona una opción: " localtime
+		clear
+		if [ "$localtime" = "1" ]; then
+			europa
+		elif [ "$localtime" = "2" ]; then
+			argentina
+		elif [ "$localtime" = "3" ]; then
+			america
+		elif [ "$localtime" = "0" ]; then
+			break
+		else
+			echo "Escoge una zona"
+		fi
+	done
+}
+
+function europa
+{
+	europa=""
+	while [ "$europa" != "0" ]
+	do
+		echo 1- Madrid
+		echo 2- Andorra
+		echo ""
+		echo 0- Menú anterior
+		echo
+		read -p "Selecciona una opción: " europa
+		clear
+		if [ "$europa" = "1" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
+			echo "Zona local canviada"
+			sleep 3 && break
+		elif [ "$europa" = "2" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/Europe/Andorra /etc/localtime
+			echo "Zona local canviada"
+			sleep 3 && break
+		elif [ "$europa" = "0" ]; then
+			break
+		else
+			echo "Escoge tu zona correcta"
+		fi
+	done
+}
+
+function argentina
+{
+	argentina=""
+	while [ "$argentina" != "0" ]
+	do
+		echo 1- Buenos Aires
+		echo 2- Catamarca
+		echo 3- ComodRivadavia
+		echo 4- Cordoba
+		echo 5- Jujuy
+		echo 6- La Rioja
+		echo 7- Mendoza
+		echo 8- Rio Gallegos
+		echo 9- Salta
+		echo 10- San Juan
+		echo 11- San Luis
+		echo 12- Tucuman
+		echo 13- Ushuaia
+		echo ""
+		echo 0- Menú anterior
+		echo
+		read -p "Selecciona una opción: " argentina
+		clear
+		if [ "$argentina" = "1" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Argentina/Buenos_Aires /etc/localtime
+			echo "Zona local canviada"
+			sleep 3 && break
+		elif [ "$argentina" = "2" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Argentina/Catamarca /etc/localtime
+			echo "Zona local canviada"
+			sleep 3 && break
+		elif [ "$argentina" = "3" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Argentina/ComodRivadavia /etc/localtime
+			echo "Zona local canviada"
+			sleep 3 && break
+		elif [ "$argentina" = "4" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Argentina/Cordoba /etc/localtime
+			echo "Zona local canviada"
+			sleep 3 && break
+		elif [ "$argentina" = "5" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Argentina/Jujuy /etc/localtime
+			echo "Zona local canviada"
+			sleep 3 && break
+		elif [ "$argentina" = "6" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Argentina/La_Rioja /etc/localtime
+			echo "Zona local canviada"
+			sleep 3 && break
+		elif [ "$argentina" = "7" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Argentina/Mendoza /etc/localtime
+			echo "Zona local canviada"
+			sleep 3 && break
+		elif [ "$argentina" = "8" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Argentina/Rio_Gallegos /etc/localtime
+			echo "Zona local canviada"
+			sleep 3 && break
+		elif [ "$argentina" = "9" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Argentina/Salta /etc/localtime
+			sleep 3 && break
+		elif [ "$argentina" = "10" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Argentina/San_Juan /etc/localtime
+			sleep 3 && break
+		elif [ "$argentina" = "11" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Argentina/San_Luis /etc/localtime
+			sleep 3 && break
+		elif [ "$argentina" = "12" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Argentina/Tucuman /etc/localtime
+			sleep 3 && break
+		elif [ "$argentina" = "13" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Argentina/Ushuaia /etc/localtime
+			sleep 3 && break
+		elif [ "$argentina" = "0" ]; then
+			break
+		else
+			echo "Escoge tu zona correcta"
+		fi
+	done
+}
+
+function america
+{
+	america=""
+	while [ "$america" != "0" ]
+	do
+		echo 1- Bogota
+		echo 2- Caracas
+		echo 3- Costa Rica
+		echo 4- El Salvador
+		echo 5- Guatemala
+		echo 6- La Paz
+		echo 7- Lima
+		echo 8- Merida
+		echo 9- Mexico City
+		echo 10- Santiago
+		echo ""
+		echo 0- Menú anterior
+		echo
+		read -p "Selecciona una opción: " america
+		clear
+		if [ "$america" = "1" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
+			sleep 3 && break
+		elif [ "$america" = "2" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Caracas /etc/localtime
+			sleep 3 && break
+		elif [ "$america" = "3" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Costa_Rica /etc/localtime
+			sleep 3 && break
+		elif [ "$america" = "4" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/El_Salvador /etc/localtime
+			sleep 3 && break
+		elif [ "$america" = "5" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Guatemala /etc/localtime
+			sleep 3 && break
+		elif [ "$america" = "6" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/La_Paz /etc/localtime
+			sleep 3 && break
+		elif [ "$america" = "7" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Lima /etc/localtime
+			sleep 3 && break
+		elif [ "$america" = "8" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Merida /etc/localtime
+			sleep 3 && break
+		elif [ "$america" = "9" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Mexico_City /etc/localtime
+			sleep 3 && break
+		elif [ "$america" = "10" ]; then
+			sudo rm /etc/localtime
+			sudo ln -s /usr/share/zoneinfo/America/Santiago /etc/localtime
+			sleep 3 && break
+		elif [ "$america" = "0" ]; then
+			break
+		else
+			echo "Escoge tu zona correcta"
+		fi
+	done
+}
+
+function locale
+{
+	locale=""
+	while [ "$locale" != "0" ]
+	do
+		echo 1- Español
+		echo 2- Catalán
+		echo 3- Argentino
+		echo 4- Chile
+		echo 5- Colombia
+		echo 6- México
+		echo 7- Venezuela
+		echo 8- América Latina
+		echo ""
+		echo 0- Menú anterior
+		echo
+		read -p "Selecciona una opción: " locale
+		clear
+		if [ "$locale" = "1" ]; then
+			localen=$(cat /etc/locale.conf)
+			sudo sed -i "s/$localen/LANG=es_ES.UTF-8/g" /etc/locale.conf
+			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+		elif [ "$locale" = "2" ]; then
+			localen=$(cat /etc/locale.conf)
+			sudo sed -i "s/$localen/LANG=ca_ES.UTF-8/g" /etc/locale.conf
+			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+		elif [ "$locale" = "3" ]; then
+			localen=$(cat /etc/locale.conf)
+			sudo sed -i "s/$localen/LANG=es_AR.UTF-8/g" /etc/locale.conf
+			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+		elif [ "$locale" = "4" ]; then
+			localen=$(cat /etc/locale.conf)
+			sudo sed -i "s/$localen/LANG=es_CL.UTF-8/g" /etc/locale.con
+			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+		elif [ "$locale" = "5" ]; then
+			localen=$(cat /etc/locale.conf)
+			sudo sed -i "s/$localen/LANG=es_CO.UTF-8/g" /etc/locale.con
+			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+		elif [ "$locale" = "6" ]; then
+			localen=$(cat /etc/locale.conf)
+			sudo sed -i "s/$localen/LANG=es_MX.UTF-8/g" /etc/locale.con
+			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+		elif [ "$locale" = "7" ]; then
+			localen=$(cat /etc/locale.conf)
+			sudo sed -i "s/$localen/LANG=es_VE.UTF-8/g" /etc/locale.con
+			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+		elif [ "$locale" = "8" ]; then
+			localen=$(cat /etc/locale.conf)
+			sudo sed -i "s/$localen/LANG=es_LA.UTF-8/g" /etc/locale.con
+			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+		elif [ "$locale" = "0" ]; then
+			break
+		else
+			echo "Escoge una zona"
+		fi
+	done
+}
+
 function configura
 {
 	configura=""
@@ -53,6 +361,7 @@ function configura
 		echo -e "${NC}"
 		echo 1- Instalación de repositorios AUR y yaourt
 		echo 2- Habilitar repositorios Multilib
+		echo 3- Configuración archivos del sistema
 		echo ""
 		echo 0- Salir al menú principal
 		echo
@@ -85,6 +394,8 @@ function configura
 				echo "Este sistema no es 64bits, no necesitas multilib" && sleep 3
 			fi
 			sleep 4 && clear
+		elif [ "$configura" = "3" ]; then
+			config
 		elif [ "$configura" = "0" ];then
 			break
 		else
