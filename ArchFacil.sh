@@ -62,7 +62,7 @@ function config
 			read -p "Nombe del equipo: " hostname
 			hostn=$(cat /etc/hostname)
 			sudo sed -i "s/$hostn/$hostname/g" /etc/hostname
-			echo Nombre del equipo cambiado a $hostname
+			clear && echo Nombre del equipo cambiado a $hostname
 			sleep 3 && clear
 		elif [ "$config" = "2" ]; then
 			localtime
@@ -118,12 +118,12 @@ function europa
 		if [ "$europa" = "1" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/Europe/Madrid /etc/localtime
-			echo "Zona local canviada"
+			clear && echo "Zona local canviada a Madrid"
 			sleep 3 && break
 		elif [ "$europa" = "2" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/Europe/Andorra /etc/localtime
-			echo "Zona local canviada"
+			clear && echo "Zona local canviada a Andorra"
 			sleep 3 && break
 		elif [ "$europa" = "0" ]; then
 			break
@@ -159,62 +159,67 @@ function argentina
 		if [ "$argentina" = "1" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Argentina/Buenos_Aires /etc/localtime
-			echo "Zona local canviada"
+			clear && echo "Zona local canviada a Buenos Aires"
 			sleep 3 && break
 		elif [ "$argentina" = "2" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Argentina/Catamarca /etc/localtime
-			echo "Zona local canviada"
+			clear && echo "Zona local canviada a Catamarca"
 			sleep 3 && break
 		elif [ "$argentina" = "3" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Argentina/ComodRivadavia /etc/localtime
-			echo "Zona local canviada"
+			clear && echo "Zona local canviada a ComodRivadavia"
 			sleep 3 && break
 		elif [ "$argentina" = "4" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Argentina/Cordoba /etc/localtime
-			echo "Zona local canviada"
+			clear && echo "Zona local canviada a Cordoba"
 			sleep 3 && break
 		elif [ "$argentina" = "5" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Argentina/Jujuy /etc/localtime
-			echo "Zona local canviada"
+			clear && echo "Zona local canviada a Jujuy"
 			sleep 3 && break
 		elif [ "$argentina" = "6" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Argentina/La_Rioja /etc/localtime
-			echo "Zona local canviada"
+			clear && echo "Zona local canviada a La Rioja"
 			sleep 3 && break
 		elif [ "$argentina" = "7" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Argentina/Mendoza /etc/localtime
-			echo "Zona local canviada"
+			clear && echo "Zona local canviada a Mendoza"
 			sleep 3 && break
 		elif [ "$argentina" = "8" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Argentina/Rio_Gallegos /etc/localtime
-			echo "Zona local canviada"
+			clear && echo "Zona local canviada a Rio Gallegos"
 			sleep 3 && break
 		elif [ "$argentina" = "9" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Argentina/Salta /etc/localtime
+			clear && echo "Zona local canviada a Salta"
 			sleep 3 && break
 		elif [ "$argentina" = "10" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Argentina/San_Juan /etc/localtime
+			clear && echo "Zona local canviada a San Juan"
 			sleep 3 && break
 		elif [ "$argentina" = "11" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Argentina/San_Luis /etc/localtime
+			clear && echo "Zona local canviada a San Luis"
 			sleep 3 && break
 		elif [ "$argentina" = "12" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Argentina/Tucuman /etc/localtime
+			clear && echo "Zona local canviada a Tucuman"
 			sleep 3 && break
 		elif [ "$argentina" = "13" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Argentina/Ushuaia /etc/localtime
+			clear && echo "Zona local canviada a Ushuaia"
 			sleep 3 && break
 		elif [ "$argentina" = "0" ]; then
 			break
@@ -247,42 +252,52 @@ function america
 		if [ "$america" = "1" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Bogota /etc/localtime
+			clear && echo "Zona local canviada a Bogota"
 			sleep 3 && break
 		elif [ "$america" = "2" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Caracas /etc/localtime
+			clear && echo "Zona local canviada a Caracas"
 			sleep 3 && break
 		elif [ "$america" = "3" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Costa_Rica /etc/localtime
+			clear && echo "Zona local canviada a Costa Rica"
 			sleep 3 && break
 		elif [ "$america" = "4" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/El_Salvador /etc/localtime
+			clear && echo "Zona local canviada a El Salvador"
 			sleep 3 && break
 		elif [ "$america" = "5" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Guatemala /etc/localtime
+			clear && echo "Zona local canviada a Guatemala"
 			sleep 3 && break
 		elif [ "$america" = "6" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/La_Paz /etc/localtime
+			clear && echo "Zona local canviada a La Paz"
 			sleep 3 && break
 		elif [ "$america" = "7" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Lima /etc/localtime
+			clear && echo "Zona local canviada a Lima"
 			sleep 3 && break
 		elif [ "$america" = "8" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Merida /etc/localtime
+			clear && echo "Zona local canviada a Merida"
 			sleep 3 && break
 		elif [ "$america" = "9" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Mexico_City /etc/localtime
+			clear && echo "Zona local canviada a Mexico City"
 			sleep 3 && break
 		elif [ "$america" = "10" ]; then
 			sudo rm /etc/localtime
 			sudo ln -s /usr/share/zoneinfo/America/Santiago /etc/localtime
+			clear && echo "Zona local canviada a Santiago"
 			sleep 3 && break
 		elif [ "$america" = "0" ]; then
 			break
@@ -313,35 +328,35 @@ function locale
 		if [ "$locale" = "1" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=es_ES.UTF-8/g" /etc/locale.conf
-			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+			clear && echo "El idioma del sistema se ha cambiado a español de España" && sleep 3 && break
 		elif [ "$locale" = "2" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=ca_ES.UTF-8/g" /etc/locale.conf
-			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+			clear && echo "El idioma del sistema se ha cambiado a catalán" && sleep 3 && break
 		elif [ "$locale" = "3" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=es_AR.UTF-8/g" /etc/locale.conf
-			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+			clear && echo "El idioma del sistema se ha cambiado español de Argentina" && sleep 3 && break
 		elif [ "$locale" = "4" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=es_CL.UTF-8/g" /etc/locale.con
-			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+			clear && echo "El idioma del sistema se ha cambiado a español de Chile" && sleep 3 && break
 		elif [ "$locale" = "5" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=es_CO.UTF-8/g" /etc/locale.con
-			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+			clear && echo "El idioma del sistema se ha cambiado a español de Colombia" && sleep 3 && break
 		elif [ "$locale" = "6" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=es_MX.UTF-8/g" /etc/locale.con
-			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+			clear && echo "El idioma del sistema se ha cambiado a español de México" && sleep 3 && break
 		elif [ "$locale" = "7" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=es_VE.UTF-8/g" /etc/locale.con
-			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+			clear && echo "El idioma del sistema se ha cambiado a español de Venezuela" && sleep 3 && break
 		elif [ "$locale" = "8" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=es_LA.UTF-8/g" /etc/locale.con
-			echo "El idioma del sistema se ha cambiado" && sleep 3 && break
+			clear && echo "El idioma del sistema se ha cambiado a español de América Latina" && sleep 3 && break
 		elif [ "$locale" = "0" ]; then
 			break
 		else
