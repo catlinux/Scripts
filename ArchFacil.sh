@@ -328,34 +328,66 @@ function locale
 		if [ "$locale" = "1" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=es_ES.UTF-8/g" /etc/locale.conf
+			sudo sed -i "s/#es_ES.UTF-8 UTF-8/es_ES.UTF-8 UTF-8/" /etc/locale.gen
+			sudo locale-gen
+			vconsole=$(cat /etc/vconsole.conf)
+			sudo sed -i "s/$vconsole/KEYMAP=es/g" /etc/vconsole.conf
 			clear && echo "El idioma del sistema se ha cambiado a español de España" && sleep 3 && break
 		elif [ "$locale" = "2" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=ca_ES.UTF-8/g" /etc/locale.conf
+			sudo sed -i "s/#ca_ES.UTF-8 UTF-8/ca_ES.UTF-8 UTF-8/" /etc/locale.gen
+			sudo locale-gen
+			vconsole=$(cat /etc/vconsole.conf)
+			sudo sed -i "s/$vconsole/KEYMAP=es/g" /etc/vconsole.conf
 			clear && echo "El idioma del sistema se ha cambiado a catalán" && sleep 3 && break
 		elif [ "$locale" = "3" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=es_AR.UTF-8/g" /etc/locale.conf
+			sudo sed -i "s/#es_AR.UTF-8 UTF-8/es_AR.UTF-8 UTF-8/" /etc/locale.gen
+			sudo locale-gen
+			vconsole=$(cat /etc/vconsole.conf)
+			sudo sed -i "s/$vconsole/KEYMAP=es/g" /etc/vconsole.conf
 			clear && echo "El idioma del sistema se ha cambiado español de Argentina" && sleep 3 && break
 		elif [ "$locale" = "4" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=es_CL.UTF-8/g" /etc/locale.con
+			sudo sed -i "s/#es_CL.UTF-8 UTF-8/es_CL.UTF-8 UTF-8/" /etc/locale.gen
+			sudo locale-gen
+			vconsole=$(cat /etc/vconsole.conf)
+			sudo sed -i "s/$vconsole/KEYMAP=es/g" /etc/vconsole.conf
 			clear && echo "El idioma del sistema se ha cambiado a español de Chile" && sleep 3 && break
 		elif [ "$locale" = "5" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=es_CO.UTF-8/g" /etc/locale.con
+			sudo sed -i "s/#es_CO.UTF-8 UTF-8/es_CO.UTF-8 UTF-8/" /etc/locale.gen
+			sudo locale-gen
+			vconsole=$(cat /etc/vconsole.conf)
+			sudo sed -i "s/$vconsole/KEYMAP=es/g" /etc/vconsole.conf
 			clear && echo "El idioma del sistema se ha cambiado a español de Colombia" && sleep 3 && break
 		elif [ "$locale" = "6" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=es_MX.UTF-8/g" /etc/locale.con
+			sudo sed -i "s/#es_MX.UTF-8 UTF-8/es_MX.UTF-8 UTF-8/" /etc/locale.gen
+			sudo locale-gen
+			vconsole=$(cat /etc/vconsole.conf)
+			sudo sed -i "s/$vconsole/KEYMAP=es/g" /etc/vconsole.conf
 			clear && echo "El idioma del sistema se ha cambiado a español de México" && sleep 3 && break
 		elif [ "$locale" = "7" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=es_VE.UTF-8/g" /etc/locale.con
+			sudo sed -i "s/#es_VE.UTF-8 UTF-8/es_VE.UTF-8 UTF-8/" /etc/locale.gen
+			sudo locale-gen
+			vconsole=$(cat /etc/vconsole.conf)
+			sudo sed -i "s/$vconsole/KEYMAP=es/g" /etc/vconsole.conf
 			clear && echo "El idioma del sistema se ha cambiado a español de Venezuela" && sleep 3 && break
 		elif [ "$locale" = "8" ]; then
 			localen=$(cat /etc/locale.conf)
 			sudo sed -i "s/$localen/LANG=es_LA.UTF-8/g" /etc/locale.con
+			sudo sed -i "s/#es_LA.UTF-8 UTF-8/es_LA.UTF-8 UTF-8/" /etc/locale.gen
+			sudo locale-gen
+			vconsole=$(cat /etc/vconsole.conf)
+			sudo sed -i "s/$vconsole/KEYMAP=es/g" /etc/vconsole.conf
 			clear && echo "El idioma del sistema se ha cambiado a español de América Latina" && sleep 3 && break
 		elif [ "$locale" = "0" ]; then
 			break
