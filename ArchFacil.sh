@@ -20,6 +20,7 @@ MENU_CONF="##   Configuración Sistema  ##"
 MENU_ESCR="##  Entornos de escritorio  ##"
 MENU_GRAF="##   Instalación gráficas   ##"
 MENU_MANT="##   Mantenimiento Sistema  ##"
+MENU_USUA="##    Gestión de usuarios   ##"
 ROJO='\e[0;31m'
 AZUL='\e[0;34m'
 VERDE='\e[0;32m'
@@ -71,7 +72,7 @@ function config
 				elif [ "$config" = "0" ]; then
 			break
 		else
-			echo "Escoge tu zona correcta"
+			echo "Escoge una opción correcta"
 		fi
 	done
 }
@@ -392,7 +393,95 @@ function locale
 		elif [ "$locale" = "0" ]; then
 			break
 		else
-			echo "Escoge una zona"
+			echo "Escoge una zona correcta"
+		fi
+	done
+}
+
+function usuarios
+{
+	usuarios=""
+	while [ "$usuarios" != "0" ]
+	do
+		printf "${AZUL} %*s\n" $(((${#MENU_ALMO}+100)/2)) "$MENU_ALMO"
+		printf "${AZUL} %*s\n" $(((${#MENU_USUA}+102)/2)) "$MENU_USUA"
+		printf "${AZUL} %*s\n" $(((${#MENU_ALMO}+100)/2)) "$MENU_ALMO"
+		echo -e "${NC}"
+		echo 1- Creación de usuario
+		echo 2- Cambiar contraseña de usuario
+		echo 3- Cambiar contraseña de root
+		echo 4- Añadir un usuario en un grupo
+		echo 5- Quitar un usuario de un grupo
+		echo 6- Borrar usuario
+		echo ""
+		echo 0- Menú anterior
+		echo
+		read -p "Selecciona una opción: " usuarios
+		clear   
+		if [ "$usuarios" = "1" ]; then
+			echo "El usuario se incluirá en los grupos por defecto:"
+			echo "audio, ftp, lp, optical, storage, video, wheel, games, power, scanner, uucp"
+			echo ""
+			read -p "Escribe el nombre de usuario: " usuario
+			egrep "^$usuario" /etc/passwd >/dev/null
+			if [ $? -eq 0 ]; then
+				clear && echo "$usuario ya existe! Escoge otro nombre"
+				sleep 3 && clear
+			else
+				sudo useradd -m -g users -G audio,ftp,lp,optical,storage,video,wheel,games,power,scanner,uucp -s /bin/bash $usuario
+				sudo passwd $usuario
+				sudo chfn $usuario
+				[ $? -eq 0 ] && echo "El usuario se ha creado correctamente!" || echo "Ha ocurrido un error al crear el usuario!"    
+				echo ""
+				sleep 4 && clear
+			fi
+#		elif [ "$usuarios" = "2" ]; then
+
+#		elif [ "$usuarios" = "3" ]; then
+
+#		elif [ "$usuarios" = "4" ]; then
+
+#		elif [ "$usuarios" = "5" ]; then
+
+		elif [ "$usuarios" = "6" ]; then
+			clear && echo ""
+			echo "Si eliminas este usuario vas a perder todos sus datos y no podrás recuperarlos nunca!"
+			read -p "Estas seguro que quieres seguir (si/no)? " si_no
+			if [ "$si_no" = "no" ]; then
+				clear
+				break
+			elif [ "$si_no" = "si" ]; then
+				read -p "Escribe el nombre de usuario que quieres eliminar: " usuario_del
+				egrep "^$usuario_del" /etc/passwd >/dev/null
+				if [ $? -eq 0 ]; then
+					clear && read -p "Seguro que quieres eliminar $usuario_del y todos sus datos (si/no)? " confirma_si_no
+					if [ "$confirma_si_no" = "no" ]; then
+						clear && echo "" 
+						echo "El usuario $usuario_del no ha sido eliminado" && sleep 3
+						clear
+						break
+					elif [ "$confirma_si_no" = "si" ]; then
+						sudo userdel -r $usuario_del
+						clear
+						echo "Has eliminado el usuario, toda su configuración y sus datos"
+						sleep 3 && clear
+					else
+						echo "Escoge una zona correcta"
+					fi
+				else
+					clear && echo ""
+					echo "Este usuario no existe en el sistema"
+					sleep 3 && clear
+				fi
+			else
+				echo "Escoge una zona correcta"
+				sleep 3 && clear
+			fi
+		elif [ "$usuarios" = "0" ]; then
+			break
+		else
+			echo "Escoge una zona correcta"
+			sleep 3 && clear
 		fi
 	done
 }
@@ -409,6 +498,7 @@ function configura
 		echo 1- Instalación de repositorios AUR y yaourt
 		echo 2- Habilitar repositorios Multilib
 		echo 3- Configuración archivos del sistema
+		echo 4- Gestión de usuarios
 		echo ""
 		echo 0- Salir al menú principal
 		echo
@@ -447,6 +537,8 @@ function configura
 			fi
 		elif [ "$configura" = "3" ]; then
 			config
+		elif [ "$configura" = "4" ]; then
+			usuarios
 		elif [ "$configura" = "0" ];then
 			break
 		else
