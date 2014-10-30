@@ -413,6 +413,7 @@ function usuarios
 		echo 4- Añadir un usuario en un grupo
 		echo 5- Quitar un usuario de un grupo
 		echo 6- Borrar usuario
+		echo 7- Borrar usuario salvando los datos
 		echo ""
 		echo 0- Menú anterior
 		echo
@@ -462,6 +463,46 @@ function usuarios
 						break
 					elif [ "$confirma_si_no" = "si" ]; then
 						sudo userdel -r $usuario_del
+						clear
+						echo "Has eliminado el usuario, toda su configuración y sus datos"
+						sleep 3 && clear
+					else
+						echo "Escoge una zona correcta"
+					fi
+				else
+					clear && echo ""
+					echo "Este usuario no existe en el sistema"
+					sleep 3 && clear
+				fi
+			else
+				echo "Escoge una zona correcta"
+				sleep 3 && clear
+			fi
+		elif [ "$usuarios" = "7" ]; then
+			clear && echo ""
+			echo "Si eliminas este usuario se creará una copia de sus archivos y configuración en:"
+			echo "/home/UsuariosBorrados"
+			read -p "Estas seguro que quieres seguir (si/no)? " si_no
+			if [ "$si_no" = "no" ]; then
+				clear
+				break
+			elif [ "$si_no" = "si" ]; then
+				read -p "Escribe el nombre de usuario que quieres eliminar: " usuario_del
+				egrep "^$usuario_del" /etc/passwd >/dev/null
+				if [ $? -eq 0 ]; then
+					clear && read -p "Seguro que quieres eliminar $usuario_del con respaldo de datos (si/no)? " confirma_resp
+					if [ "$confirma_resp" = "no" ]; then
+						clear && echo "" 
+						echo "El usuario $usuario_del no ha sido eliminado" && sleep 3
+						clear
+						break
+					elif [ "$confirma_resp" = "si" ]; then
+						if [ ! -d /home/UsuariosBorrados ]; then
+							sudo mkdir /home/UsuariosBorrados
+						fi
+						sudo tar czvf /home/UsuariosBorrados/$usuario_del.tar.gz /home/$usuario_del
+						sudo userdel -r $usuario_del
+						sudo rm -r /home/$usuario_del
 						clear
 						echo "Has eliminado el usuario, toda su configuración y sus datos"
 						sleep 3 && clear
