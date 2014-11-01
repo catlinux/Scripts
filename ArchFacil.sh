@@ -436,10 +436,27 @@ function usuarios
 				echo ""
 				sleep 4 && clear
 			fi
-#		elif [ "$usuarios" = "2" ]; then
-
-#		elif [ "$usuarios" = "3" ]; then
-
+		elif [ "$usuarios" = "2" ]; then
+			read -p  "Escribe el nombre de usuario al que quieres cambiar la contraseña: " usario_pass
+			egrep "^$usario_pass" /etc/passwd >/dev/null
+			if [ $? -eq 0 ]; then
+				sudo passwd $usario_pass
+				sleep 3
+				clear
+			else
+				clear
+				echo "Este usuario no existe en este sistema" && sleep 3
+				clear
+			fi
+		elif [ "$usuarios" = "3" ]; then
+			clear
+			read -p "Vamos a cambiar la contraseña de root (admin del sistema). Estás completamente seguro (si/no)? " root_pass
+			if [ "$root_pass" = "no" ]; then
+				clear
+			else
+				sudo passwd root
+				sleep 3 && clear
+			fi
 #		elif [ "$usuarios" = "4" ]; then
 
 #		elif [ "$usuarios" = "5" ]; then
@@ -504,7 +521,7 @@ function usuarios
 						sudo userdel -r $usuario_del
 						sudo rm -r /home/$usuario_del
 						clear
-						echo "Has eliminado el usuario, toda su configuración y sus datos"
+						echo "Has eliminado el usuario, salvando toda su configuración y sus datos"
 						sleep 3 && clear
 					else
 						echo "Escoge una zona correcta"
