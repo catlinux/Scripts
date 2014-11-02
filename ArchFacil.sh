@@ -457,10 +457,53 @@ function usuarios
 				sudo passwd root
 				sleep 3 && clear
 			fi
-#		elif [ "$usuarios" = "4" ]; then
+		elif [ "$usuarios" = "4" ]; then
+			clear
+			echo "Estos son algunos de los grupos más comunes para los usuarios"
+			echo ""
+			echo -e "root \t\t disk \t\t lp \t\t wheel \t\t ftp \t\t mail \t\t uucp \t\t log \t\t rfkill \t network \t video \t\t audio \t\t optical \t floppy \t storage \t scanner \t power \t\t bumblebee \t colord \t vboxusers"
+			echo ""
+			read -p  "Escoge un grupo: " group
+			read -p  "Escribe el nombre de usuario al que quieres añadir en un grupo: " usario_group
+			egrep "^$group" /etc/group >/dev/null
+			if [ $? -eq 0 ]; then
+				egrep "^$usario_group" /etc/passwd >/dev/null
+				if [ $? -eq 0 ]; then
+					sudo usermod -a -G $group $usario_group
+					sleep 3
+					clear
+				else
+					clear
+					echo "Este usuario no existe en este sistema" && sleep 3
+					clear
+				fi
+			else
+				echo "Este grupo no existe en este sistema" && sleep 3
+			fi
 
-#		elif [ "$usuarios" = "5" ]; then
-
+		elif [ "$usuarios" = "5" ]; then
+			clear
+			read -p  "Escribe el nombre de usuario al que quieres quitar de un grupo: " usario_del_group
+			egrep "^$usario_del_group" /etc/passwd >/dev/null
+			if [ $? -eq 0 ]; then
+				echo ""
+				echo "Estos son los grupos a los que pertenece $usario_del_group:"
+				groups $usario_del_group
+				echo ""
+				read -p  "Escribe el grupo al que quieres sacar al usaurio $usario_del_group: " del_group
+				egrep "^$del_group" /etc/group >/dev/null
+				if [ $? -eq 0 ]; then
+					sudo gpasswd -d $usario_del_group $del_group
+					sleep 3
+					clear
+				else
+					echo "No has escrito correctamente el nombre del grupo"
+					sleep 3
+					clear
+				fi
+			else
+				echo "No existe este nombre de usuario"
+			fi
 		elif [ "$usuarios" = "6" ]; then
 			clear && echo ""
 			echo "Si eliminas este usuario vas a perder todos sus datos y no podrás recuperarlos nunca!"
