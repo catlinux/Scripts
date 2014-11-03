@@ -667,20 +667,45 @@ function escritorio
 		read -p "Selecciona una opción: " escritorio 
 		clear
 		if [ "$escritorio" = "1" ]; then
-				printf "${ROJO} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
-				printf "${ROJO} %*s\n" $(((Gnome+100)/2)) "Gnome"
-				printf "${ROJO} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
-				echo ""
-				echo "OPCIÓN NO DISPONIBLE (PRÓXIMAMENTE)"
+				printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
+				printf "${AZUL} %*s\n" $(((gnome+100)/2)) "gnome"
+				printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 				echo -e "${NC}"
-			sleep 4 && clear
+				echo ""
+				echo "Se va a instalar el entorno de escritorio gnome y un gestor de sesiones,"
+				echo "también se instalarán algunos programas básicos para este entorno."
+				sleep 6 && clear
+				sudo pacman -Sy --noconfirm xorg-server xorg-xinit xorg-server-utils mesa gnome gnome-extra gdm lxdm 
+				sudo systemctl enable NetworkManager
+				sudo systemctl start NetworkManager
+				clear
+				echo "Debes escoger uno de los dos gestores de sesión disponibles: gdm o lxdm"
+				while [ "$opcion" != 3 ]
+				do
+					echo ""
+					echo "1. gdm - gestor de Gnome compatible con Cinnamon y Mate"
+					echo "2. lxdm - gestor muy ligero compatible con Gnome, Mate y Cinnamon"
+					echo ""
+					echo "0. No instalar ningún gestor"
+					read -p "Selecciona una opcion: " opcion
+					case $opcion in
+						1) sudo rm /etc/systemd/system/display-manager.service && sudo systemctl enable gdm && break;;
+						2) sudo rm /etc/systemd/system/display-manager.service && sudo systemctl enable lxdm && break;;
+						0) break;;
+						*) echo "$opc es una opcion invalida.";
+						echo "Presiona una tecla para continuar...";
+						clear
+						read foo;;
+					esac
+				done
+				sleep 4 && clear
 		elif [ "$escritorio" = "2" ]; then
 				printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 				printf "${AZUL} %*s\n" $(((Cinnamon+100)/2)) "Cinnamon"
 				printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 				echo -e "${NC}"
 				echo ""
-				echo "Se va a instalar el entorno de escritorio Cinnamon y el gestor de sesiones gdm,"
+				echo "Se va a instalar el entorno de escritorio Cinnamon y un gestor de sesiones,"
 				echo "también se instalarán algunos programas básicos para este entorno."
 				sleep 6 && clear
 				sudo pacman -Sy --noconfirm xorg-server xorg-xinit xorg-server-utils mesa gnome gdm lxdm cinnamon cinnamon-control-center cinnamon-screensaver nemo gnome-alsamixer nemo-fileroller 
@@ -708,13 +733,38 @@ function escritorio
 				done
 				sleep 4 && clear
 		elif [ "$escritorio" = "3" ]; then
-				printf "${ROJO} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
-				printf "${ROJO} %*s\n" $(((Mate+100)/2)) "Mate"
-				printf "${ROJO} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
-				echo ""
-				echo "OPCIÓN NO DISPONIBLE (PRÓXIMAMENTE)"
+				printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
+				printf "${AZUL} %*s\n" $(((Mate+100)/2)) "Mate"
+				printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 				echo -e "${NC}"
-			sleep 4 && clear
+				echo ""
+				echo "Se va a instalar el entorno de escritorio Mate y un gestor de sesiones,"
+				echo "también se instalarán algunos programas básicos para este entorno."
+				sleep 6 && clear
+				sudo pacman -Sy --noconfirm xorg-server xorg-xinit xorg-server-utils mesa mate mate-extra 
+				sudo systemctl enable NetworkManager
+				sudo systemctl start NetworkManager
+				clear
+				echo "Debes escoger uno de los dos gestores de sesión disponibles: gdm o lxdm"
+				while [ "$opcion" != 3 ]
+				do
+					echo ""
+					echo "1. gdm - gestor de Gnome compatible con Cinnamon y Mate"
+					echo "2. lxdm - gestor muy ligero compatible con Gnome, Mate y Cinnamon"
+					echo ""
+					echo "0. No instalar ningún gestor"
+					read -p "Selecciona una opcion: " opcion
+					case $opcion in
+						1) sudo rm /etc/systemd/system/display-manager.service && sudo systemctl enable gdm && break;;
+						2) sudo rm /etc/systemd/system/display-manager.service && sudo systemctl enable lxdm && break;;
+						0) break;;
+						*) echo "$opc es una opcion invalida.";
+						echo "Presiona una tecla para continuar...";
+						clear
+						read foo;;
+					esac
+				done
+				sleep 4 && clear
 		elif [ "$escritorio" = "4" ]; then
 				printf "${ROJO} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 				printf "${ROJO} %*s\n" $(((KDE+100)/2)) "KDE"
