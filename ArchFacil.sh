@@ -801,6 +801,7 @@ function graficas
 		echo 2- Controladores Catalyst
 		echo 3- Controladores Intel
 		echo 4- "Controladores Intel + Nvidia (Bumblebee)"
+		echo 5- "Controladores para instalar bajo VirtualBox"
 		echo ""
 		echo 0- Salir al menú principal
 		echo
@@ -838,6 +839,22 @@ function graficas
 				echo "OPCIÓN NO DISPONIBLE (PRÓXIMAMENTE)"
 				echo -e "${NC}"
 			sleep 4 && clear
+		elif [ "$graficas" = "2" ]; then
+			printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
+			printf "${AZUL} %*s\n" $(((Virtualbox \(Vesa\)+100)/2)) "Virtualbox \(Vesa\)"
+			printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
+			echo -e "${NC}"
+			echo ""
+			echo "Se van a instalar los controladores y servicios necesarios para que los gráficos"
+			echo "funcionen correctamente en la máquina virtual bajo VirtualBox"
+			sleep 6 && clear
+			sudo pacman -S xf86-video-vesa
+			sudo pacman -S virtualbox-guest-utils virtualbox-guest-modules virtualbox-guest-modules-lts virtualbox-guest-dkms
+			echo vboxguest | sudo tee -a /etc/modules-load.d/virtualbox.conf
+			echo vboxsf | sudo tee -a /etc/modules-load.d/virtualbox.conf
+			echo vboxvideo | sudo tee -a /etc/modules-load.d/virtualbox.conf
+			sudo systemctl enable vboxservice.service
+			clear
 		elif [ "$graficas" = "0" ];then
 			break
 		else
