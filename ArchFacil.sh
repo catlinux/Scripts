@@ -849,8 +849,8 @@ function graficas
 			echo "Se van a instalar los controladores y servicios necesarios para que los gráficos"
 			echo "funcionen correctamente en la máquina virtual bajo VirtualBox"
 			sleep 6 && clear
-			sudo pacman -S xf86-video-vesa
-			sudo pacman -S virtualbox-guest-utils virtualbox-guest-modules virtualbox-guest-modules-lts virtualbox-guest-dkms
+			sudo pacman -Sy --noconfirm xf86-video-vesa
+			sudo pacman -Sy --noconfirm virtualbox-guest-utils virtualbox-guest-modules virtualbox-guest-modules-lts virtualbox-guest-dkms
 			echo vboxguest | sudo tee -a /etc/modules-load.d/virtualbox.conf
 			echo vboxsf | sudo tee -a /etc/modules-load.d/virtualbox.conf
 			echo vboxvideo | sudo tee -a /etc/modules-load.d/virtualbox.conf
