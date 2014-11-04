@@ -839,7 +839,7 @@ function graficas
 				echo "OPCIÓN NO DISPONIBLE (PRÓXIMAMENTE)"
 				echo -e "${NC}"
 			sleep 4 && clear
-		elif [ "$graficas" = "2" ]; then
+		elif [ "$graficas" = "5" ]; then
 			printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 			printf "${AZUL} %*s\n" $(((Virtualbox \(Vesa\)+100)/2)) "Virtualbox \(Vesa\)"
 			printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
