@@ -31,6 +31,7 @@ LIBRE="Libre Office"
 EOG="Eye of Gnome"
 NTFS="ntfs-3g"
 ACTUALIZA="Actualización del Sistema"
+VBOX="VirtualBox (Vesa)"
 
 echo ""
 echo ""
@@ -841,7 +842,7 @@ function graficas
 			sleep 4 && clear
 		elif [ "$graficas" = "5" ]; then
 			printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
-			printf "${AZUL} %*s\n" $(((Virtualbox \(Vesa\)+100)/2)) "Virtualbox \(Vesa\)"
+			printf "${AZUL} %*s\n" $(((${#VBOX}+100)/2)) "$VBOX"
 			printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 			echo -e "${NC}"
 			echo ""
