@@ -766,13 +766,20 @@ function escritorio
 				done
 				sleep 4 && clear
 		elif [ "$escritorio" = "4" ]; then
-				printf "${ROJO} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
-				printf "${ROJO} %*s\n" $(((KDE+100)/2)) "KDE"
-				printf "${ROJO} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
-				echo ""
-				echo "OPCIÓN NO DISPONIBLE (PRÓXIMAMENTE)"
+				printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
+				printf "${AZUL} %*s\n" $(((KDE+100)/2)) "KDE"
+				printf "${AZUL} %*s\n" $(((${#CABEZERA1}+100)/2)) "$CABEZERA1"
 				echo -e "${NC}"
-			sleep 4 && clear
+				echo ""
+				echo "Se va a instalar el entorno de escritorio KDE y el gestor de sesiones KDM,"
+				echo "también se instalarán algunos programas básicos para este entorno."
+				sleep 6 && clear
+				sudo pacman -Sy --noconfirm xorg-server xorg-xinit xorg-server-utils mesa kde-meta kde-l10n-es kdeplasma-applets-plasma-nm apper  
+				sudo systemctl enable NetworkManager
+				sudo systemctl start NetworkManager
+				sudo rm /etc/systemd/system/display-manager.service && sudo systemctl enable kdm.service
+				sleep 4 && clear
+				break
 		elif [ "$escritorio" = "0" ];then
 			break
 		else
