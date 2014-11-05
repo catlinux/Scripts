@@ -601,6 +601,7 @@ function configura
 		echo 2- Habilitar repositorios Multilib
 		echo 3- Configuración archivos del sistema
 		echo 4- Gestión de usuarios
+		echo 5- Habilitar fuentes más amigables
 		echo ""
 		echo 0- Salir al menú principal
 		echo
@@ -641,6 +642,21 @@ function configura
 			config
 		elif [ "$configura" = "4" ]; then
 			usuarios
+		elif [ "$configura" = "5" ]; then
+			clear
+			echo ""
+			echo "Es necesario tener instalado yaourt para poder instalar las fuentes"
+			sleep 3 && clear
+			if [ -x /usr/bin/yaourt ]; then
+				sudo pacman -Sy --noconfirm artwiz-fonts ttf-bitstream-vera ttf-cheapskate
+				sudo pacman -Rdd --noconfirm cairo fontconfig freetype2
+				yaourt -Sy --noconfirm cairo-ubuntu fontconfig-ubuntu freetype2-ubuntu ttf-ms-fonts
+				sudo fc-cache -f -v
+				clear
+			else 
+				clear 
+				echo "No tienes yaourt en el sistema. Debes instalarlo para poder disponer de estas fuentes" && sleep 3 && clear
+			fi
 		elif [ "$configura" = "0" ];then
 			break
 		else
@@ -851,6 +867,7 @@ function graficas
 			sleep 6 && clear
 			sudo pacman -Sy --noconfirm xf86-video-vesa
 			sudo pacman -Sy --noconfirm virtualbox-guest-utils virtualbox-guest-modules virtualbox-guest-modules-lts virtualbox-guest-dkms
+			sudo rm /etc/modules-load.d/virtualbox.conf
 			echo vboxguest | sudo tee -a /etc/modules-load.d/virtualbox.conf
 			echo vboxsf | sudo tee -a /etc/modules-load.d/virtualbox.conf
 			echo vboxvideo | sudo tee -a /etc/modules-load.d/virtualbox.conf
