@@ -3,27 +3,23 @@ clear
 ## Comprobamos si tenemos el software necesario de lo contrario lo instalamos
 if [ ! -x /usr/bin/youtube-dl ]; then
 	echo "No tienes instalado el paquete \"youtube-dl\", vamos a instalarlo"
+	sleep 5 && clear
 	sudo pacman -Sy --noconfirm youtube-dl
 	clear
 fi
 if [ ! -x /usr/bin/ffmpeg ]; then
 	echo "No tienes instalado el paquete \"ffmpeg\", vamos a instalarlo"
+	sleep 5 && clear
 	sudo pacman -Sy --noconfirm ffmpeg
 	clear
 fi
 ## Comprobamos si tenemos el directorio de descargas youtube creado, de lo contrario lo crea
-if [ ! -x /home/`echo $USER`/Youtube ];then
-	cd /home/`echo $USER`/ && mkdir Youtube
-fi
-if [ ! -x /home/`echo $USER`/Youtube/Audio ];then
-	cd /home/`echo $USER`/Youtube/ && mkdir Audio
-fi
-if [ ! -x /home/`echo $USER`/Youtube/Videos ];then
-	cd /home/`echo $USER`/Youtube/ && mkdir Videos
+if [ ! -x /$HOME/Youtube ];then
+	mkdir -p $HOME/Youtube/{Videos,Audio}
 fi
 ## Variables de los directorios
-audio="/home/`echo $USER`/Youtube/Audio"
-video="/home/`echo $USER`/Youtube/Videos"
+audio="$HOME/Youtube/Audio"
+video="$HOME/Youtube/Videos"
 ## Función descargar vídeo
 function video
 {
