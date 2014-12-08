@@ -33,7 +33,7 @@ send "exit\r"
 expect "sql>"
 
 # Conectamos al host mediante ftp
-spawn ftp ftp.${hostFTP}
+spawn ftp ${hostFTP}
 expect "Name:"
 send "${userFTP}\r"
 expect "Password:"
