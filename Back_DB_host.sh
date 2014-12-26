@@ -24,14 +24,15 @@ set direcREMOTO Backups
 set direcLOCAL Backups
  
 # Conectamos al host mediante ssh
-spawn ssh ${USER}@${HOST}
+log_user 0
+spawn ssh -o StrictHostKeyChecking=no ${USER}@${HOST}
 expect -re "password:"
 send "${PASS}\r"
 expect "sql>"
 send "mysqldump --password=${passDB} --user=${userDB} -h ${hostDB} ${database} > ${direcREMOTO}/Backup_${database}_[exec date "+%d-%m-%Y"].sql\r"
 send "exit\r"
 expect "sql>"
-
+log_user 1
 # Conectamos al host mediante ftp
 spawn ftp ${hostFTP}
 expect "Name:"
